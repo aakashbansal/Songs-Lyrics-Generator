@@ -2,7 +2,9 @@
 This is a Natural Language Generation project that first trains itself on the corpus of lyrics by any artist and then generate its own lyrics given some starting seed lyric string.
 
 # Dataset
-The dataset was generated using a [python web scraping script](https://github.com/aakashbansal/Songs-Lyrics-Web-Scraper) for collecting lyrics of all songs by a particular artist and saved in **lyrics_scraped.txt** . Some other songs' lyrics also are manually collected from the web for which the lyrics could not be scraped and saved in **lyrics_manual_extract.txt**. Both of these files are combined into one file : **lyrics_final.txt**
+The dataset was generated using a [python web scraping script](https://github.com/aakashbansal/Songs-Lyrics-Web-Scraper) that collects lyrics of all songs by a particular artist and saves them in **lyrics_scraped.txt** . Some other songs' lyrics also are manually collected from the web for which the lyrics could not be scraped and saved in **lyrics_manual_extract.txt**. Both of these files are combined into one file : **lyrics_final.txt**
+
+For the purposes of this project, **Eminem's** songs's lyrics would be used to train the model.
 
 # Description
 The core code of the project is present in **char_level_model_eminem_lyrics_generator.ipynb** file. It reads the datset from **lyrics_final.txt**.

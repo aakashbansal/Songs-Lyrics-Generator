@@ -11,7 +11,49 @@ The core code of the project is present in **char_level_model_eminem_lyrics_gene
 
 A lot of preprocessing is done on the dataset including removing punctuation, special characters, digits, specially formatted text ( like [intro - eminem], [beatboxing], [chorus - 50 cent], [8X] (8 times repeat), [ Verse 3 ], [ Trick Trick ], [Chorus], etc).
 
-After the preprocessing step, the data is converted into text sequences of fixed length i.e. 30 characters ( training data - x ) and next character ( training label - y ). This is then vectorized into one hot encoding and fed to the **character level model** given in next section.
+After the preprocessing step, the data is converted into text sequences of fixed length i.e. 30 characters ( training data - x ) and next character ( training label - y ).
+
+```
+# dividing dataset lyrics into sentences and next character prediction
+input_text = []
+next_char_prediction = []
+
+INPUT_TEXT_LEN_FIXED = 30
+
+for each_lyric in lyrics:
+    
+    for i in range(0, len(each_lyric) - INPUT_TEXT_LEN_FIXED):
+        
+        input_text.append(each_lyric[i: i + INPUT_TEXT_LEN_FIXED])
+        next_char_prediction.append(each_lyric[i + INPUT_TEXT_LEN_FIXED])
+```
+
+
+Two dictionaries are also maintained : **char_to_index** (responsible for converting a character into an index value) and **index_to_char** (responsible for converting an index value to its corresponding character).
+
+
+```
+# Create a dictionary mapping from character to index 
+char_to_index = dict((c, i) for i, c in enumerate(chars))
+
+# Create a dictionary mapping from index to character 
+index_to_char = dict((i, c) for i, c in enumerate(chars))
+```
+
+The data is then vectorized into one hot encoding as folllows :
+
+
+```
+x = np.zeros((len(input_text), INPUT_TEXT_LEN_FIXED, len(chars)), dtype=np.bool)
+y = np.zeros((len(next_char_prediction), len(chars)), dtype=np.bool)
+
+for idx, each_input_text in enumerate(input_text):
+    for char_pos, char in enumerate(each_input_text):
+        x[idx, char_pos, char_to_index[char]] = 1
+    y[idx, char_to_index[next_char_prediction[idx]]] = 1
+```
+
+This data is then fed to the **character level model** given in next section.
 
 # Model
 ```

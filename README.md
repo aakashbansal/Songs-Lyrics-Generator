@@ -7,9 +7,9 @@ The dataset was generated using a [python web scraping script](https://github.co
 For the purposes of this project, **Eminem's** songs' lyrics would be used to train the model.
 
 # Description
-The core code of the project is present in **char_level_model_eminem_lyrics_generator.ipynb** file. It reads the datset from **lyrics_final.txt**.
+The core code of the project is present in **char_level_model_eminem_lyrics_generator.ipynb** file. 
 
-Specify the location of lyrics file :
+Specify the location of lyrics file. Currently, it reads the dataset from **lyrics_final.txt**. :
 ```
 # dataset directory
 dataset ="dataset\lyrics_final.txt"

@@ -9,6 +9,16 @@ For the purposes of this project, **Eminem's** songs' lyrics would be used to tr
 # Description
 The core code of the project is present in **char_level_model_eminem_lyrics_generator.ipynb** file. It reads the datset from **lyrics_final.txt**.
 
+Specify the location of lyrics file :
+```
+# dataset directory
+dataset ="dataset\lyrics_final.txt"
+text = ""
+
+with open(dataset,"r") as ds:
+    text = ds.read()
+```
+
 A lot of preprocessing is done on the dataset including removing punctuation, special characters, digits, specially formatted text ( like [intro - eminem], [beatboxing], [chorus - 50 cent], [8X] (8 times repeat), [ Verse 3 ], [ Trick Trick ], [Chorus], etc).
 
 After the preprocessing step, the data is converted into text sequences of fixed length i.e. 30 characters ( training data - x ) and next character ( training label - y ).
